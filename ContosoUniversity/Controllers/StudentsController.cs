@@ -65,7 +65,7 @@ namespace ContosoUniversity.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(student);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(true);
                 return RedirectToAction(nameof(Index));
             }
             return View(student);
@@ -104,7 +104,7 @@ namespace ContosoUniversity.Controllers
                 try
                 {
                     _context.Update(student);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync(true);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -147,7 +147,7 @@ namespace ContosoUniversity.Controllers
         {
             var student = await _context.Students.SingleOrDefaultAsync(m => m.ID == id);
             _context.Students.Remove(student);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(true);
             return RedirectToAction(nameof(Index));
         }
 

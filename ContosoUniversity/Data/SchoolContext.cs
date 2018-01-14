@@ -17,21 +17,6 @@ namespace ContosoUniversity.Data
         public virtual DbSet<Enrollment> Enrollments { get; set; }
         public virtual DbSet<Student> Students { get; set; }
 
-        public new void Add(Student student)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public new void Update(Student student)
-        {
-            throw new NotImplementedException();
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Course>().ToTable("Course");
