@@ -25,6 +25,15 @@ namespace ContosoUniversity.Controllers
             _context.SaveChanges();
         }
 
+        public List<Student> GetAllStudentsTest()
+        {
+            var query = from s in _context.Students
+                        orderby s.FirstMidName
+                        select s;
+
+            return query.ToList();
+        }
+
         // GET: Students
         public async Task<IActionResult> Index()
         {
@@ -32,14 +41,14 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Students/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var student = await _context.Students
+            var student = _context.Students
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
